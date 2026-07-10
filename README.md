@@ -55,15 +55,15 @@ Perfect for:
 
 | Browser | File | Download |
 |---------|------|----------|
-| 🦊 **Firefox** | `.xpi` | [Download](https://github.com/fsimonsec/crawlext/raw/main/ExtensionsV3/simon-crawlext-firefox.xpi) |
-| 🌐 **Chrome / Edge / Brave** | `.crx` | [Download](https://github.com/fsimonsec/Simon-crawlext/raw/main/ExtensionsV3/Simon-crawlext-chrome.crx) |
+| 🦊 **Firefox** | `.xpi` | [Download](https://github.com/fsimonsec/simon-crawlext/releases/download/v3.0.0/simon-crawlext-firefox.xpi) |
+| 🌐 **Chrome / Edge / Brave** | `.crx` | [Download](https://github.com/fsimonsec/simon-crawlext/releases/download/v3.0.0/Simon-crawlext-chrome.crx) |
 
 ### V2 (legacy, lighter version)
 
 | Browser | File | Download |
 |---------|------|----------|
-| 🦊 **Firefox** | `.xpi` | [Download](https://github.com/fsimonsec/Simon-crawlext/raw/main/ExtensionsV2/simon-recon%28firefox%29.xpi) |
-| 🌐 **Chrome / Edge / Brave** | `.crx` | [Download](https://github.com/fsimonsec/Simon-crawlext/raw/main/ExtensionsV2/Simon-Recon%28chrome%29.crx) |
+| 🦊 **Firefox** | `.xpi` | [Download](https://github.com/fsimonsec/simon-crawlext/releases/download/v2.0.0/simon-recon-firefox.xpi) |
+| 🌐 **Chrome / Edge / Brave** | `.crx` | [Download](https://github.com/fsimonsec/simon-crawlext/releases/download/v2.0.0/Simon-Recon-chrome.crx) |
 
 ### How to Install
 ```
