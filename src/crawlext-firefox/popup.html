@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-deep: #06040f;
+            --bg-card: #120d20;
+            --bg-hover: #1a1130;
+            --border: #2a1f45;
+            --border-glow: #4a2d8a;
+            --purple-mid: #7c3aed;
+            --purple-bright: #a78bfa;
+            --purple-pale: #c4b5fd;
+            --text-primary: #e8e0ff;
+            --text-muted: #6b5a8a;
+            --text-dim: #3d2f5a;
+            --gold: #f5c842;
+            --cyan: #5dd8e8;
+            --green: #4ade80;
+            --pink: #e879f9;
+            --radius: 8px;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        html, body {
+            width: 280px;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: var(--mono);
+        }
+
+        .popup-wrap {
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .popup-wrap::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg, transparent, transparent 2px,
+                rgba(124,58,237,0.012) 2px, rgba(124,58,237,0.012) 4px
+            );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 0 20px rgba(124,58,237,0.45), 0 0 40px rgba(124,58,237,0.2);
+            border: 1px solid var(--border-glow);
+        }
+
+        .header-title {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--purple-bright);
+            text-shadow: 0 0 20px rgba(124,58,237,0.6);
+        }
+
+        .header-badge {
+            font-size: 9px;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            padding: 9px 14px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text-primary);
+            font-family: var(--mono);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+            letter-spacing: 0.3px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 2px;
+            background: var(--purple-mid);
+            opacity: 0;
+            transition: opacity 0.18s;
+            border-radius: 2px 0 0 2px;
+        }
+
+        .btn:hover:not(:disabled) {
+            background: var(--bg-hover);
+            border-color: var(--border-glow);
+            color: var(--purple-pale);
+            transform: translateX(2px);
+            box-shadow: 0 2px 16px rgba(124,58,237,0.15);
+        }
+
+        .btn:hover:not(:disabled)::before { opacity: 1; }
+        .btn:active { transform: translateX(1px) scale(0.99); }
+        .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+        .btn-icon { font-size: 14px; flex-shrink: 0; }
+        .btn-label { flex: 1; }
+
+        .btn-arrow {
+            font-size: 10px;
+            color: var(--text-dim);
+            transition: color 0.18s, transform 0.18s;
+        }
+        .btn:hover:not(:disabled) .btn-arrow {
+            color: var(--purple-bright);
+            transform: translateX(2px);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+        }
+        .divider-dot { font-size: 8px; color: var(--text-dim); letter-spacing: 3px; }
+
+        .stats-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-full {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: border-color 0.2s;
+        }
+        .stat-full:hover { border-color: var(--border-glow); }
+
+        .stat-full-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stat-full-num {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--purple-bright);
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+            text-shadow: 0 0 16px rgba(167,139,250,0.4);
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .stat-full-label {
+            font-size: 9px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        .stat-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px;
+        }
+
+        .stat-half {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: border-color 0.2s;
+        }
+        .stat-half:hover { border-color: var(--border-glow); }
+
+        .stat-half-icon { font-size: 13px; flex-shrink: 0; }
+        .stat-half-info { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+
+        .stat-half-num {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+            min-width: 20px;
+        }
+
+        .stat-half-label {
+            font-size: 8px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .num-params  { color: var(--gold);  text-shadow: 0 0 12px rgba(245,200,66,0.35); }
+        .num-api     { color: var(--cyan);   text-shadow: 0 0 12px rgba(93,216,232,0.35); }
+        .num-files   { color: var(--green);  text-shadow: 0 0 12px rgba(74,222,128,0.35); }
+        .num-special { color: var(--pink);   text-shadow: 0 0 12px rgba(232,121,249,0.35); }
+
+        .loading { color: var(--text-dim) !important; text-shadow: none !important; }
+
+        .footer-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .status {
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            min-height: 14px;
+            transition: color 0.3s;
+        }
+        .status.loading { color: var(--gold); }
+        .status.done    { color: var(--green); }
+        .status.error   { color: #f87171; }
+
+        .version { font-size: 8px; color: var(--text-dim); letter-spacing: 1.5px; }
+
+        .spinner {
+            display: inline-block;
+            width: 11px; height: 11px;
+            border: 1.5px solid rgba(255,255,255,0.1);
+            border-top-color: var(--purple-bright);
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            flex-shrink: 0;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+<div class="popup-wrap">
+
+    <div class="header">
+        <img class="header-logo" src="icon.png" alt="Simon Recon Logo">
+        <div class="header-title">Simon Recon</div>
+        <div class="header-badge">✦ passive link crawler ✦</div>
+    </div>
+
+    <div class="btn-group">
+        <button id="refreshBtn" class="btn">
+            <span class="btn-icon">🔄</span>
+            <span class="btn-label">Reload Page</span>
+            <span class="btn-arrow">›</span>
+        </button>
+        <button id="reconBtn" class="btn" disabled>
+            <span class="btn-icon">🔍</span>
+            <span class="btn-label">Recon</span>
+            <span class="btn-arrow">›</span>
+        </button>
+    </div>
+
+    <div class="divider">
+        <div class="divider-line"></div>
+        <div class="divider-dot">· · ·</div>
+        <div class="divider-line"></div>
+    </div>
+
+    <div class="stats-wrap">
+        <div class="stat-full">
+            <div class="stat-full-left">
+                <span>📊</span>
+                <div class="stat-full-num loading" id="statTotal">—</div>
+            </div>
+            <div class="stat-full-label">All URLs</div>
+        </div>
+
+        <div class="stat-row">
+            <div class="stat-half">
+                <span class="stat-half-icon">🔗</span>
+                <div class="stat-half-info">
+                    <div class="stat-half-num num-params loading" id="statParams">—</div>
+                    <div class="stat-half-label">Params</div>
+                </div>
+            </div>
+            <div class="stat-half">
+                <span class="stat-half-icon">⚡</span>
+                <div class="stat-half-info">
+                    <div class="stat-half-num num-api loading" id="statAPI">—</div>
+                    <div class="stat-half-label">API</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stat-row">
+            <div class="stat-half">
+                <span class="stat-half-icon">📁</span>
+                <div class="stat-half-info">
+                    <div class="stat-half-num num-files loading" id="statFiles">—</div>
+                    <div class="stat-half-label">Files</div>
+                </div>
+            </div>
+            <div class="stat-half">
+                <span class="stat-half-icon">⭐</span>
+                <div class="stat-half-info">
+                    <div class="stat-half-num num-special loading" id="statSpecial">—</div>
+                    <div class="stat-half-label">Special</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-wrap">
+        <div class="status" id="status">✦ Ready ✦</div>
+        <div class="version">✦ v3.0.0 ✦</div>
+    </div>
+
+</div>
+<script src="popup.js"></script>
+</body>
+</html>
