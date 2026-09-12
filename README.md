@@ -70,13 +70,8 @@ Perfect for:
 ## 🚀 How to Install
 
 **Firefox:**
-1. Download the `.xpi` file from the table above
-2. Open this `about:debugging#/runtime/this-firefox`
-3. Click **Load Temporary Add-on...**
-4. Select the `.xpi` file downloaded in step 1.
-5. Done
-
-> **Note:** If Firefox shows a warning, go to `about:config` and set `xpinstall.signatures.required` to `false`.
+Install from Mozilla Add-ons:
+https://addons.mozilla.org/firefox/addon/crawlext/
 
 **Chrome / Edge / Brave:**
 1. Download the `.crx` file from the table above
