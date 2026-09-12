@@ -49,24 +49,6 @@ Perfect for:
 
 ---
 
-## 📦 Downloads
-
-### V3 (recommended)
-
-| Browser | File | Download |
-|---------|------|----------|
-| 🦊 **Firefox** | `.xpi` | [Download](https://github.com/fsimonsec/simon-crawlext/releases/download/v3.0.0/crawlext-firefox.xpi) |
-| 🌐 **Chrome / Edge / Brave** | `.crx` | [Download](https://github.com/fsimonsec/simon-crawlext/releases/download/v3.0.0/crawlext-chrome.crx) |
-
-### V2 (legacy, lighter version)
-
-| Browser | File | Download |
-|---------|------|----------|
-| 🦊 **Firefox** | `.xpi` | [Download](https://github.com/fsimonsec/simon-crawlext/releases/download/v2.0.0/simon-recon-firefox.xpi) |
-| 🌐 **Chrome / Edge / Brave** | `.crx` | [Download](https://github.com/fsimonsec/simon-crawlext/releases/download/v2.0.0/Simon-Recon-chrome.crx) |
-
----
-
 ## 🚀 How to Install
 
 **Firefox:**
