@@ -55,8 +55,8 @@ Perfect for:
 
 | Browser | File | Download |
 |---------|------|----------|
-| 🦊 **Firefox** | `.xpi` | [Download](https://github.com/fsimonsec/simon-crawlext/releases/download/v3.0.0/simon-crawlext-firefox.xpi) |
-| 🌐 **Chrome / Edge / Brave** | `.crx` | [Download](https://github.com/fsimonsec/simon-crawlext/releases/download/v3.0.0/Simon-crawlext-chrome.crx) |
+| 🦊 **Firefox** | `.xpi` | [Download](https://github.com/fsimonsec/simon-crawlext/releases/download/v3.0.0/crawlext-firefox.crx) |
+| 🌐 **Chrome / Edge / Brave** | `.crx` | [Download](https://github.com/fsimonsec/simon-crawlext/releases/download/v3.0.0/crawlext-chrome.crx) |
 
 ### V2 (legacy, lighter version)
 
@@ -71,8 +71,10 @@ Perfect for:
 
 **Firefox:**
 1. Download the `.xpi` file from the table above
-2. Drag and drop it into Firefox
-3. Click **Add**
+2. Open this `about:debugging#/runtime/this-firefox`
+3. Click **Load Temporary Add-on...**
+4. Select the `.xpi` file downloaded in step 1.
+5. Done
 
 > **Note:** If Firefox shows a warning, go to `about:config` and set `xpinstall.signatures.required` to `false`.
 
