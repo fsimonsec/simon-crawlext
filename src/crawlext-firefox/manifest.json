@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "Simon-Recon",
+  "name": "CrawlExt",
   "version": "3.0.0",
-  "description": "Simon Recon Extension - Link discovery with parameter management",
+  "description": "CrawlExt - Link discovery with parameter management",
   "permissions": [
     "activeTab",
     "storage",
@@ -35,7 +35,7 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "fsimonsec@gmail.comV2",
+      "id": "crawlext@fsimonsec",
       "strict_min_version": "58.0",
       "data_collection_permissions": {
         "required": ["none"]
