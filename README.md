@@ -55,7 +55,7 @@ Perfect for:
 
 | Browser | File | Download |
 |---------|------|----------|
-| 🦊 **Firefox** | `.xpi` | [Download](https://github.com/fsimonsec/simon-crawlext/releases/download/v3.0.0/crawlext-firefox.crx) |
+| 🦊 **Firefox** | `.xpi` | [Download](https://github.com/fsimonsec/simon-crawlext/releases/download/v3.0.0/crawlext-firefox.xpi) |
 | 🌐 **Chrome / Edge / Brave** | `.crx` | [Download](https://github.com/fsimonsec/simon-crawlext/releases/download/v3.0.0/crawlext-chrome.crx) |
 
 ### V2 (legacy, lighter version)
