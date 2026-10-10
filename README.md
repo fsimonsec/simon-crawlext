@@ -52,7 +52,7 @@ Perfect for:
 ## 🚀 How to Install
 
 **Firefox:**
-Install from Mozilla Add-ons:
+Install from Mozilla Add-ons: https://addons.mozilla.org/en-US/firefox/addon/crawlext/
 https://addons.mozilla.org/firefox/addon/crawlext/
 
 **Chrome / Edge / Brave:**
